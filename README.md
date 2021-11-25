@@ -1,7 +1,7 @@
 !!! WARNING !!!
 
-*This directory contains private user info (such as SSH keys) and is provided by another host (not by me).
-*For that specific reason, this directory remains private.
+This directory contains private user info (such as SSH keys) and is provided by another host (not by me).
+For that specific reason, this directory remains private.
 
 Hello visitor!
 
