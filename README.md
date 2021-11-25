@@ -3,6 +3,8 @@
 This directory contains private user info (such as SSH keys) and is provided by another host (not by me).
 For that specific reason, this directory remains private.
 
+==================================================================
+
 Hello visitor!
 
 This directory contains documentation and tasks that I used for personal purposes.
