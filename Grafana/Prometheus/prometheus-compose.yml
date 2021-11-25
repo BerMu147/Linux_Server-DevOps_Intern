@@ -1,0 +1,43 @@
+version: '3.4'
+networks:
+  PrviNetwork:
+    external: true
+
+volumes:
+  prometheus_data:
+  prometheus: 
+configs:
+  ph-config:
+    file: ./ph.yml
+services:
+  prometheus:
+    image: prom/prometheus:v2.30.3
+    configs:
+      - source: ph-config
+        target: /etc/prometheus/prometheus.yml
+    volumes:
+      - prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    command:
+        - '--config.file=/etc/prometheus/prometheus.yml'
+        - '--storage.tsdb.retention.time=200h'
+        - '--web.enable-lifecycle'
+        - '--log.level=debug'
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.prometheus.entrypoints=web"
+        - "traefik.http.routers.prometheus.rule=Host(`prometheus-internship2021.mss.ba`)"
+        - "traefik.http.routers.prometheus.middlewares=traefik-https-redirect@file"
+        - "traefik.http.routers.prometheus-secure.entrypoints=websecure"
+        - "traefik.http.routers.prometheus-secure.rule=Host(`prometheus-internship2021.mss.ba`)"
+        - "traefik.http.routers.prometheus-secure.tls=true"
+        - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+        - "traefik.http.middlewares.prometheus-auth.forwardauth.tls.insecureSkipVerify=true"
+        - "traefik.docker.network=PrviNetwork"
+        - "traefik.http.routers.prometheus-secure.tls.certresolver=myresolver"
+    restart: unless-stopped
+    networks:
+      - PrviNetwork 
+    labels:
+      org.label-schema.group: "monitoring"

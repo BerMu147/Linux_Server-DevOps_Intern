@@ -1,0 +1,23 @@
+[2021-10-22 12:10:37.141] [exthost] [info] extension host started
+[2021-10-22 12:10:37.157] [exthost] [info] Lock '/root/.vscode-server/data/User/workspaceStorage/80b76bd4d16e96959e622651e45e424d/vscode.lock': Lock acquired.
+[2021-10-22 12:10:37.399] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2021-10-22 12:10:37.399] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/debug-auto-launch/dist/extension
+[2021-10-22 12:10:37.408] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*', root cause: vscode.github
+[2021-10-22 12:10:37.409] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/git/dist/main
+[2021-10-22 12:10:40.400] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2021-10-22 12:10:40.401] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/github/dist/extension.js
+[2021-10-22 12:10:40.890] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2021-10-22 12:10:40.890] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/emmet/dist/node/emmetNodeMain
+[2021-10-22 12:10:40.926] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2021-10-22 12:10:40.927] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/merge-conflict/dist/mergeConflictMain
+[2021-10-22 12:10:40.934] [exthost] [info] eager extensions activated
+[2021-10-22 12:10:40.939] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.js-debug, startup: false, activationEvent: 'onCommand:extension.js-debug.clearAutoAttachVariables'
+[2021-10-22 12:10:40.939] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/ms-vscode.js-debug/src/extension.js
+[2021-10-22 12:12:29.709] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing, startup: false, activationEvent: 'onLanguage:json'
+[2021-10-22 12:12:29.709] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/configuration-editing/dist/configurationEditingMain
+[2021-10-22 12:12:29.723] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+[2021-10-22 12:12:29.723] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/extension-editing/dist/extensionEditingMain
+[2021-10-22 12:12:29.752] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'
+[2021-10-22 12:12:29.752] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/json-language-features/client/dist/node/jsonClientMain
+[2021-10-22 12:12:29.859] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm, startup: false, activationEvent: 'onLanguage:json'
+[2021-10-22 12:12:29.859] [exthost] [info] ExtensionService#loadCommonJSModule file:///root/.vscode-server/bin/c13f1abb110fc756f9b3a6f16670df9cd9d4cf63/extensions/npm/dist/npmMain

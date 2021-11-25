@@ -1,0 +1,4 @@
+cluster.name: graylog
+newtork.host: PrviNetwork
+http.port: 9200
+discovery.zen.ping.unicast.hosts:["kecpod68rj1b96i43gw04mzs9","hjtowz6uruffdyfic848slqbp"]

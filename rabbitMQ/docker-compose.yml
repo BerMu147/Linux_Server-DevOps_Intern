@@ -1,0 +1,32 @@
+version: "3.8"
+
+networks:
+  PrviNetwork:
+    external: true
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.8-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - PrviNetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=PrviNetwork"
+        - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+        - "traefik.http.routers.rabbitmq-http.rule=Host(`rabbitmq-internship2021.mss.ba`)"
+        - "traefik.http.routers.rabbitmq-http.entrypoints=web"
+        - "traefik.http.routers.rabbitmq-http.middlewares=traefik-https-redirect@file"
+        - "traefik.http.routers.rabbitmq-secure.rule=Host(`rabbitmq-internship2021.mss.ba`)"
+        - "traefik.http.routers.rabbitmq-secure.entrypoints=websecure"
+        - "traefik.http.routers.rabbitmq-secure.tls=true"
+      placement:
+        constraints:
+          - node.platform.os == linux
+          - node.role == worker

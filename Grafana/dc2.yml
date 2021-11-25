@@ -1,0 +1,50 @@
+version: "3.3"
+
+networks:
+  PrviNetwork:
+    external: true
+
+volumes:
+    grafana: {}
+
+services:
+  grafana:
+    image: stefanprodan/swarmprom-grafana:5.3.4
+    networks:
+      - PrviNetwork
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      #- GF_SERVER_ROOT_URL=${GF_SERVER_ROOT_URL:-localhost}
+      #- GF_SMTP_ENABLED=${GF_SMTP_ENABLED:-false}
+      #- GF_SMTP_FROM_ADDRESS=${GF_SMTP_FROM_ADDRESS:-grafana@test.com}
+      #- GF_SMTP_FROM_NAME=${GF_SMTP_FROM_NAME:-Grafana}
+      #- GF_SMTP_HOST=${GF_SMTP_HOST:-smtp:25}
+      #- GF_SMTP_USER=${GF_SMTP_USER}
+      #- GF_SMTP_PASSWORD=${GF_SMTP_PASSWORD}
+    volumes:
+      - grafana:/var/lib/grafana
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.grafana.entrypoints=web"
+        - "traefik.http.routers.grafana.rule=Host(`grafana-internship2021.mss.ba`)"
+        - "traefik.http.routers.grafana.middlewares=traefik-https-redirect@file"
+        - "traefik.http.routers.grafana-secure.entrypoints=websecure"
+        - "traefik.http.routers.grafana-secure.rule=Host(`grafana-internship2021.mss.ba`)"
+        - "traefik.http.routers.grafana-secure.tls=true"
+        - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+        - "traefik.http.middlewares.grafana-auth.forwardauth.tls.insecureSkipVerify=true"
+        - "traefik.docker.network=PrviNetwork"
+        - "traefik.http.routers.grafana-secure.tls.certresolver=myresolver"
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M

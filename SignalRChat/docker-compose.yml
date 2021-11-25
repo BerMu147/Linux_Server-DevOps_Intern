@@ -1,0 +1,45 @@
+version: "3.9"
+
+networks:
+ PrviNetwork:
+   external: true
+
+services:
+  signalr:
+    image: registry.klinkplatform.com/mssinternship-signalr:alpha-latest  
+    environment:
+      - REDIS=0.0.0.0:6379
+    depends_on:
+      - "redis"
+    build: ./signalR
+    links:
+      - "redis"
+    networks:
+      - PrviNetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=PrviNetwork"
+        - "traefik.http.services.signalr.loadbalancer.server.port=80"
+        - "traefik.http.routers.signalr-http.rule=Host(`signalr-internship2021.mss.ba`)"
+        - "traefik.http.routers.signalr-http.entrypoints=web"
+        - "traefik.http.routers.signalr-http.middlewares=traefik-https-redirect@file"
+        - "traefik.http.routers.signalr-secure.rule=Host(`signalr-internship2021.mss.ba`)"
+        - "traefik.http.routers.signalr-secure.entrypoints=websecure"
+        - "traefik.http.routers.signalr-secure.tls=true"
+      placement:
+        constraints:
+          - node.platform.os == linux
+          - node.role == worker  
+
+  redis:
+    image: redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - PrviNetwork
+    deploy:
+      placement:
+        constraints:
+          - node.platform.os == linux
+          - node.role == worker

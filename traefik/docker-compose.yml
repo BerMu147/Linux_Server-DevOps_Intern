@@ -1,0 +1,46 @@
+version: "3.4"
+services:
+  traefik:
+    image: traefik:v2.5.2
+    networks:
+      - PrviNetwork
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/traefik/acme.json:/acme.json
+
+    configs:
+      - source: traefik-config
+        target: /traefik.toml
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role==manager]
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.traefik.entrypoints=web"
+        - "traefik.http.routers.traefik.rule=Host(`internship-traefik.mss.ba`)"
+        - "traefik.http.middlewares.traefik-auth.basicauth.users=berin:berin:$$apr1$$.7eUdHF4$$wYMz4Ju83cqLxpUd1tgdP."
+          #        - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+          #        - "traefik.http.routers.traefik.middlewares=traefik-https-redirect@file"
+        - "traefik.http.routers.traefik-secure.entrypoints=websecure"
+        - "traefik.http.routers.traefik-secure.rule=Host(`internship-traefik.mss.ba`)"
+          #- "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+        - "traefik.http.routers.traefik-secure.tls=true"
+        - "traefik.http.routers.traefik-secure.service=api@internal"
+        - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+        - "traefik.http.routers.traefik-secure.tls.certresolver=myresolver"
+
+networks:
+  PrviNetwork:
+    external: true
+configs:
+  traefik-config:
+    file: ./traefik.toml
