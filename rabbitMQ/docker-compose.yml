@@ -20,10 +20,10 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=PrviNetwork"
         - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
-        - "traefik.http.routers.rabbitmq-http.rule=Host(`rabbitmq-internship2021.mss.ba`)"
+        - "traefik.http.routers.rabbitmq-http.rule=Host(`rabbitmq-internship2021.example.com`)"
         - "traefik.http.routers.rabbitmq-http.entrypoints=web"
         - "traefik.http.routers.rabbitmq-http.middlewares=traefik-https-redirect@file"
-        - "traefik.http.routers.rabbitmq-secure.rule=Host(`rabbitmq-internship2021.mss.ba`)"
+        - "traefik.http.routers.rabbitmq-secure.rule=Host(`rabbitmq-internship2021.example.com`)"
         - "traefik.http.routers.rabbitmq-secure.entrypoints=websecure"
         - "traefik.http.routers.rabbitmq-secure.tls=true"
       placement:

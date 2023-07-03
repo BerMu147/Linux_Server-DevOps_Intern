@@ -15,17 +15,17 @@ networks:
 
 services:
   backend:
-    image: registry.klinkplatform.com/mssinternship-api:alpha-latest
+    image: registry.example.com/mssinternship-api:alpha-latest
     networks:
       - PrviNetwork
     deploy:
       labels:
         - "traefik.enable=true"
         - "traefik.http.services.backend.loadbalancer.server.port=80"
-        - "traefik.http.routers.backend-http.rule=Host(`internship2021-api.mss.ba`)"
+        - "traefik.http.routers.backend-http.rule=Host(`internship2021-api.example.com`)"
         - "traefik.http.routers.backend-http.entrypoints=web"
         - "traefik.http.routers.backend-http.middlewares=traefik-https-redirect@file"
-        - "traefik.http.routers.backend-secure.rule=Host(`internship2021-api.mss.ba`)"
+        - "traefik.http.routers.backend-secure.rule=Host(`internship2021-api.example.com`)"
         - "traefik.http.routers.backend-secure.entrypoints=websecure"
         - "traefik.http.routers.backend-secure.tls=true"
         - "traefik.http.routers.backend-secure.tls.certresolver=myresolver"

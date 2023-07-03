@@ -31,8 +31,8 @@ services:
       - GRAYLOG_PASSWORD_SECRET=dgbv24444b6dvfd6er
       # Password: admin
       - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-      - GRAYLOG_HTTP_EXTERNAL_URI=https://graylog-internship2021.mss.ba/
-      - GRAYLOG_WEB_ENDPOINT_URI=https://graylog-internship2021.mss.ba/
+      - GRAYLOG_HTTP_EXTERNAL_URI=https://graylog-internship2021.example.com/
+      - GRAYLOG_WEB_ENDPOINT_URI=https://graylog-internship2021.example.com/
     volumes:
       - graylog_data_config:/usr/share/graylog/data/config
     deploy:
@@ -43,10 +43,10 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.graylog.entrypoints=web"
-        - "traefik.http.routers.graylog.rule=Host(`graylog-internship2021.mss.ba`)"
+        - "traefik.http.routers.graylog.rule=Host(`graylog-internship2021.example.com`)"
         - "traefik.http.routers.graylog.middlewares=traefik-https-redirect@file"
         - "traefik.http.routers.graylog-secure.entrypoints=websecure"
-        - "traefik.http.routers.graylog-secure.rule=Host(`graylog-internship2021.mss.ba`)"
+        - "traefik.http.routers.graylog-secure.rule=Host(`graylog-internship2021.example.com`)"
         - "traefik.http.routers.graylog-secure.tls=true"
         - "traefik.http.services.graylog.loadbalancer.server.port=9000"
         - "traefik.http.middlewares.graylog-auth.forwardauth.tls.insecureSkipVerify=true"

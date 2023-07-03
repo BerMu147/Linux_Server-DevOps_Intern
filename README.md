@@ -12,6 +12,7 @@ Services that can be found within are:
 - Traefik - Load Balancer and Reverse Proxy service
 - RabbitMQ - Message Broker
 - SignalR - WebApplication for .NET application
+- Node Exporter - Machine resources (memory, CPU, disk)
 - Prometheus - System Monitoring and Alerting Toolkit
 - Shell scripts like .bashsrc, .profile, service.sh (Traefik update)
 

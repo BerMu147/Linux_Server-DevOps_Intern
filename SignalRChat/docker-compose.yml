@@ -6,7 +6,7 @@ networks:
 
 services:
   signalr:
-    image: registry.klinkplatform.com/mssinternship-signalr:alpha-latest  
+    image: registry.example.com/mssinternship-signalr:alpha-latest  
     environment:
       - REDIS=0.0.0.0:6379
     depends_on:
@@ -21,10 +21,10 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=PrviNetwork"
         - "traefik.http.services.signalr.loadbalancer.server.port=80"
-        - "traefik.http.routers.signalr-http.rule=Host(`signalr-internship2021.mss.ba`)"
+        - "traefik.http.routers.signalr-http.rule=Host(`signalr-internship2021.example.com`)"
         - "traefik.http.routers.signalr-http.entrypoints=web"
         - "traefik.http.routers.signalr-http.middlewares=traefik-https-redirect@file"
-        - "traefik.http.routers.signalr-secure.rule=Host(`signalr-internship2021.mss.ba`)"
+        - "traefik.http.routers.signalr-secure.rule=Host(`signalr-internship2021.example.com`)"
         - "traefik.http.routers.signalr-secure.entrypoints=websecure"
         - "traefik.http.routers.signalr-secure.tls=true"
       placement:
