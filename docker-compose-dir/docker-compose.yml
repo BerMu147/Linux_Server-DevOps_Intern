@@ -1,20 +1,21 @@
 version: '3'
 
 services:
-        web:
-          build: . 
-          ports:
-              - "5000:5000"
-          volumes: 
-              - .:/docker-compose-dir
-          environment:
-                  FLASK_ENV: development
-          redis:
-                "redis:alpine"
-          volumes:
-              - "/var/run/docker.sock:/var/run/docker.sock"
-	      - "./letsencrypt:/letsencrypt"
-          whoami:
-              image: containous/whoami
-              labels:
-                 - traefik.http.routers.whoami.rule=Host('http://whoami.docker.localhost/')
+    web:
+        build: . 
+        ports:
+            - "5000:5000"
+        volumes: 
+            - .:/docker-compose-dir
+        environment:
+            FLASK_ENV: development
+        redis:
+            "redis:alpine"
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+	    configs:
+            - "./letsencrypt:/letsencrypt"
+        whoami:
+            image: containous/whoami
+            labels:
+                - traefik.http.routers.whoami.rule=Host('http://whoami.docker.localhost/')
