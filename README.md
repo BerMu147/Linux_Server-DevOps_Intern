@@ -15,9 +15,3 @@ Services that can be found within are:
 - Node Exporter - Machine resources (memory, CPU, disk)
 - Prometheus - System Monitoring and Alerting Toolkit
 - Shell scripts like .bashsrc, .profile, service.sh (Traefik update)
-
-Feel free to sniff around and use the examples for your own dev configuration!
-
-===
-
-~ BerMu147
